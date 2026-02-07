@@ -58,3 +58,13 @@ li {
     background-color: #111;
   }
 }
+
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.dark-mode header,
+.dark-mode .logo-banner {
+  background-color: #111;
+}
