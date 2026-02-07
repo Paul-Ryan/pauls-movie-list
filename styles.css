@@ -40,8 +40,10 @@ li {
   text-align: center;
 }
 
-.logo-banner span {
+.logo-banner h1 {
   font-size: 2rem;
+  margin: 0;
+  font-weight: normal;
 }
 
 /* ===== Ads / branding page (ads.html) ===== */
@@ -66,8 +68,10 @@ li {
   flex-direction: column;
 }
 
-.big-logo h1 {
+.big-logo .logo-text {
   font-size: 40px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .logo {
@@ -96,8 +100,10 @@ li {
   flex-direction: column;
 }
 
-.small-logo h1 {
+.small-logo .logo-text {
   font-size: 12px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .padding {
@@ -105,4 +111,31 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.text-section {
+  margin-top: 200px;
+}
+
+.tagline {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.display-text {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.ads-page h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

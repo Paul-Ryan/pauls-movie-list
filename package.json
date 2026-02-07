@@ -1,11 +1,9 @@
 {
   "name": "pauls-movie-list",
   "version": "1.0.0",
-  "description": "Movie's I like",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
+  "description": "Movies I like",
+  "main": "index.html",
+  "scripts": {},
   "keywords": [
     "movies"
   ],
