@@ -5,6 +5,7 @@ A curated list of Paul's favorite movies and TV shows, hosted on GitHub Pages.
 ## Pages
 
 - **index.html** — The main movie and TV show list
+- **dark/index.html** — Always-on dark mode version
 - **logo.html** — Site logo/banner
 
 ## Development
