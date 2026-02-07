@@ -129,6 +129,25 @@ li {
   margin: 0;
 }
 
+/* ===== Dark mode ===== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  header,
+  .logo-banner {
+    background-color: #111;
+  }
+
+  .big-logo,
+  .logo,
+  .small-logo {
+    border-color: #e0e0e0;
+  }
+}
+
 .ads-page h1 {
   position: absolute;
   width: 1px;
