@@ -1,0 +1,108 @@
+/* ===== Base styles (index.html) ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  margin: 0;
+}
+
+li {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+/* ===== Logo banner (logo.html) ===== */
+.logo-banner {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.logo-banner span {
+  font-size: 2rem;
+}
+
+/* ===== Ads / branding page (ads.html) ===== */
+.ads-page {
+  font: 14px "Arial", sans-serif;
+}
+
+.left-margin {
+  margin-left: 300px;
+}
+
+.big-logo {
+  margin: 100px 50px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 12px dotted black;
+  width: 200px;
+  height: 200px;
+  flex-direction: column;
+}
+
+.big-logo h1 {
+  font-size: 40px;
+}
+
+.logo {
+  margin: 100px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 8px dotted black;
+  width: 100px;
+  height: 100px;
+  flex-direction: column;
+}
+
+.small-logo {
+  margin: 20px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 4px dotted black;
+  width: 50px;
+  height: 50px;
+  flex-direction: column;
+}
+
+.small-logo h1 {
+  font-size: 12px;
+}
+
+.padding {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
