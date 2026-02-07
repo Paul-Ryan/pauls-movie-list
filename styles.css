@@ -46,96 +46,15 @@ li {
   font-weight: normal;
 }
 
-/* ===== Ads / branding page (ads.html) ===== */
-.ads-page {
-  font: 14px "Arial", sans-serif;
-}
+/* ===== Dark mode ===== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
 
-.left-margin {
-  margin-left: 300px;
-}
-
-.big-logo {
-  margin: 100px 50px;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 12px dotted black;
-  width: 200px;
-  height: 200px;
-  flex-direction: column;
-}
-
-.big-logo .logo-text {
-  font-size: 40px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.logo {
-  margin: 100px;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 8px dotted black;
-  width: 100px;
-  height: 100px;
-  flex-direction: column;
-}
-
-.small-logo {
-  margin: 20px;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 4px dotted black;
-  width: 50px;
-  height: 50px;
-  flex-direction: column;
-}
-
-.small-logo .logo-text {
-  font-size: 12px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.padding {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text-section {
-  margin-top: 200px;
-}
-
-.tagline {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 0;
-}
-
-.display-text {
-  font-size: 2em;
-  font-weight: bold;
-  margin: 0;
-}
-
-.ads-page h1 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+  header,
+  .logo-banner {
+    background-color: #111;
+  }
 }
