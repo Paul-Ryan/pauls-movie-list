@@ -6,7 +6,6 @@ A curated list of Paul's favorite movies and TV shows, hosted on GitHub Pages.
 
 - **index.html** — The main movie and TV show list
 - **logo.html** — Site logo/banner
-- **ads.html** — Branding concepts and tagline variations
 
 ## Development
 
