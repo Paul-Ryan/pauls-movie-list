@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paul's Movie List</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -24,7 +25,13 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <header><h1>Paul's Movie List</h1></header>
+    <header>
+      <h1>Paul's Movie List</h1>
+      <button id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="icon-sun material-symbols-outlined">light_mode</span>
+        <span class="icon-moon material-symbols-outlined">dark_mode</span>
+      </button>
+    </header>
     <main>
       <h2 id="movies-heading">Favorite Movies</h2>
       <ul aria-labelledby="movies-heading">
@@ -52,6 +59,19 @@
         <li>White Lotus</li>
       </ul>
     </main>
+    <script>
+      (function () {
+        var btn = document.getElementById('theme-toggle');
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.body.classList.add('dark-mode');
+        }
+        btn.addEventListener('click', function () {
+          document.body.classList.toggle('dark-mode');
+          localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+      })();
+    </script>
   </body>
   <footer>
     <!-- Quantcast Tag -->
