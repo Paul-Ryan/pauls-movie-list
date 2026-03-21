@@ -40,9 +40,9 @@ header h1 {
   border-color: rgba(255, 255, 255, 0.8);
 }
 
-.icon-moon { display: none; }
-.dark-mode .icon-sun { display: none; }
-.dark-mode .icon-moon { display: inline; }
+#theme-toggle .icon-moon { display: none; }
+.dark-mode #theme-toggle .icon-sun { display: none; }
+.dark-mode #theme-toggle .icon-moon { display: inline; }
 
 main {
   margin: 0 auto;
