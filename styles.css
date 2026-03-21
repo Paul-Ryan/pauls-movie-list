@@ -8,9 +8,41 @@ body {
 header {
   background-color: #333;
   color: white;
-  padding: 1rem;
-  text-align: center;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
+header h1 {
+  margin: 0;
+}
+
+#theme-toggle {
+  position: absolute;
+  right: 1.5rem;
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease;
+}
+
+#theme-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.icon-moon { display: none; }
+.dark-mode .icon-sun { display: none; }
+.dark-mode .icon-moon { display: inline; }
 
 main {
   margin: 0 auto;
