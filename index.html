@@ -39,28 +39,28 @@
       </div>
       <h2 id="movies-heading">Favorite Movies</h2>
       <ul aria-labelledby="movies-heading">
-        <li>Hunt for the Wilderpeople</li>
-        <li>Mission Impossible: Rogue Nation</li>
-        <li>Her</li>
-        <li>The Little Hours</li>
-        <li>Blade Runner</li>
-        <li>The Thing (1982)</li>
-        <li>The Fifth Element</li>
-        <li>Terminator 2</li>
-        <li>Mars Express</li>
-        <li>Past Lives</li>
-        <li>Starship Troopers</li>
+        <li><span>Hunt for the Wilderpeople</span><button class="fav-btn" aria-label="Favorite" data-title="Hunt for the Wilderpeople"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Mission Impossible: Rogue Nation</span><button class="fav-btn" aria-label="Favorite" data-title="Mission Impossible: Rogue Nation"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Her</span><button class="fav-btn" aria-label="Favorite" data-title="Her"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>The Little Hours</span><button class="fav-btn" aria-label="Favorite" data-title="The Little Hours"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Blade Runner</span><button class="fav-btn" aria-label="Favorite" data-title="Blade Runner"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>The Thing (1982)</span><button class="fav-btn" aria-label="Favorite" data-title="The Thing (1982)"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>The Fifth Element</span><button class="fav-btn" aria-label="Favorite" data-title="The Fifth Element"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Terminator 2</span><button class="fav-btn" aria-label="Favorite" data-title="Terminator 2"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Mars Express</span><button class="fav-btn" aria-label="Favorite" data-title="Mars Express"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Past Lives</span><button class="fav-btn" aria-label="Favorite" data-title="Past Lives"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Starship Troopers</span><button class="fav-btn" aria-label="Favorite" data-title="Starship Troopers"><span class="material-symbols-outlined">favorite</span></button></li>
       </ul>
       <h2 id="shows-heading">Favorite Shows</h2>
       <ul aria-labelledby="shows-heading">
-        <li>Succession</li>
-        <li>The Office</li>
-        <li>Futurama</li>
-        <li>What We Do In The Shadows</li>
-        <li>Better Call Saul</li>
-        <li>Freaks and Geeks</li>
-        <li>Firefly</li>
-        <li>White Lotus</li>
+        <li><span>Succession</span><button class="fav-btn" aria-label="Favorite" data-title="Succession"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>The Office</span><button class="fav-btn" aria-label="Favorite" data-title="The Office"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Futurama</span><button class="fav-btn" aria-label="Favorite" data-title="Futurama"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>What We Do In The Shadows</span><button class="fav-btn" aria-label="Favorite" data-title="What We Do In The Shadows"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Better Call Saul</span><button class="fav-btn" aria-label="Favorite" data-title="Better Call Saul"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Freaks and Geeks</span><button class="fav-btn" aria-label="Favorite" data-title="Freaks and Geeks"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>Firefly</span><button class="fav-btn" aria-label="Favorite" data-title="Firefly"><span class="material-symbols-outlined">favorite</span></button></li>
+        <li><span>White Lotus</span><button class="fav-btn" aria-label="Favorite" data-title="White Lotus"><span class="material-symbols-outlined">favorite</span></button></li>
       </ul>
     </main>
     <script>
@@ -82,9 +82,14 @@
         var items = document.querySelectorAll('main ul:not(#suggestions) li');
         var headings = document.querySelectorAll('main h2');
 
+        function getTitle(li) {
+          var span = li.querySelector('span');
+          return span ? span.textContent : li.textContent;
+        }
+
         function filter(query) {
           items.forEach(function (li) {
-            li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+            li.style.display = getTitle(li).toLowerCase().includes(query) ? '' : 'none';
           });
           headings.forEach(function (h2) {
             var list = h2.nextElementSibling;
@@ -98,7 +103,7 @@
           if (!query) { suggestions.style.display = 'none'; return; }
           var matches = [];
           items.forEach(function (li) {
-            if (li.textContent.toLowerCase().includes(query)) matches.push(li.textContent);
+            if (getTitle(li).toLowerCase().includes(query)) matches.push(getTitle(li));
           });
           if (!matches.length) { suggestions.style.display = 'none'; return; }
           matches.forEach(function (text) {
@@ -123,6 +128,21 @@
 
         document.addEventListener('click', function (e) {
           if (!e.target.closest('#search-wrapper')) suggestions.style.display = 'none';
+        });
+      })();
+
+      (function () {
+        var favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+        var buttons = document.querySelectorAll('.fav-btn');
+        buttons.forEach(function (btn) {
+          var title = btn.getAttribute('data-title');
+          if (favs.indexOf(title) !== -1) btn.classList.add('favorited');
+          btn.addEventListener('click', function () {
+            btn.classList.toggle('favorited');
+            var idx = favs.indexOf(title);
+            if (idx === -1) { favs.push(title); } else { favs.splice(idx, 1); }
+            localStorage.setItem('favorites', JSON.stringify(favs));
+          });
         });
       })();
     </script>

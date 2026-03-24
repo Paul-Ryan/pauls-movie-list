@@ -149,6 +149,44 @@ li {
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+  padding: 0;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.fav-btn:hover {
+  color: #e74c3c;
+  transform: scale(1.2);
+}
+
+.fav-btn.favorited {
+  color: #e74c3c;
+}
+
+.fav-btn.favorited .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1;
+}
+
+.dark-mode .fav-btn {
+  color: #555;
+}
+
+.dark-mode .fav-btn:hover,
+.dark-mode .fav-btn.favorited {
+  color: #e74c3c;
 }
 
 li:hover {
