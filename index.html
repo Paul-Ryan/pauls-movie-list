@@ -33,7 +33,10 @@
       </button>
     </header>
     <main>
-      <input type="text" id="search" placeholder="Search movies & shows..." aria-label="Search movies and shows" />
+      <div id="search-wrapper">
+        <input type="text" id="search" placeholder="Search movies & shows..." aria-label="Search movies and shows" autocomplete="off" />
+        <ul id="suggestions"></ul>
+      </div>
       <h2 id="movies-heading">Favorite Movies</h2>
       <ul aria-labelledby="movies-heading">
         <li>Hunt for the Wilderpeople</li>
@@ -75,10 +78,11 @@
 
       (function () {
         var search = document.getElementById('search');
-        var items = document.querySelectorAll('main li');
+        var suggestions = document.getElementById('suggestions');
+        var items = document.querySelectorAll('main ul:not(#suggestions) li');
         var headings = document.querySelectorAll('main h2');
-        search.addEventListener('input', function () {
-          var query = search.value.toLowerCase();
+
+        function filter(query) {
           items.forEach(function (li) {
             li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
           });
@@ -87,6 +91,38 @@
             var visible = list.querySelectorAll('li:not([style*="display: none"])');
             h2.style.display = visible.length ? '' : 'none';
           });
+        }
+
+        function showSuggestions(query) {
+          suggestions.innerHTML = '';
+          if (!query) { suggestions.style.display = 'none'; return; }
+          var matches = [];
+          items.forEach(function (li) {
+            if (li.textContent.toLowerCase().includes(query)) matches.push(li.textContent);
+          });
+          if (!matches.length) { suggestions.style.display = 'none'; return; }
+          matches.forEach(function (text) {
+            var li = document.createElement('li');
+            var idx = text.toLowerCase().indexOf(query);
+            li.innerHTML = text.substring(0, idx) + '<strong>' + text.substring(idx, idx + query.length) + '</strong>' + text.substring(idx + query.length);
+            li.addEventListener('click', function () {
+              search.value = text;
+              filter(text.toLowerCase());
+              suggestions.style.display = 'none';
+            });
+            suggestions.appendChild(li);
+          });
+          suggestions.style.display = 'block';
+        }
+
+        search.addEventListener('input', function () {
+          var query = search.value.toLowerCase();
+          filter(query);
+          showSuggestions(query);
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('#search-wrapper')) suggestions.style.display = 'none';
         });
       })();
     </script>
