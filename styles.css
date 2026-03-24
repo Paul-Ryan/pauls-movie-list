@@ -167,9 +167,11 @@ li {
   flex-shrink: 0;
 }
 
-.fav-btn:hover {
-  color: #e74c3c;
-  transform: scale(1.2);
+@media (hover: hover) {
+  .fav-btn:hover {
+    color: #e74c3c;
+    transform: scale(1.2);
+  }
 }
 
 .fav-btn.favorited {
