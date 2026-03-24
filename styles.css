@@ -178,6 +178,10 @@ li {
   color: #e74c3c;
 }
 
+.fav-btn .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0;
+}
+
 .fav-btn.favorited .material-symbols-outlined {
   font-variation-settings: 'FILL' 1;
 }
