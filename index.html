@@ -33,6 +33,7 @@
       </button>
     </header>
     <main>
+      <input type="text" id="search" placeholder="Search movies & shows..." aria-label="Search movies and shows" />
       <h2 id="movies-heading">Favorite Movies</h2>
       <ul aria-labelledby="movies-heading">
         <li>Hunt for the Wilderpeople</li>
@@ -69,6 +70,23 @@
         btn.addEventListener('click', function () {
           document.body.classList.toggle('dark-mode');
           localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+      })();
+
+      (function () {
+        var search = document.getElementById('search');
+        var items = document.querySelectorAll('main li');
+        var headings = document.querySelectorAll('main h2');
+        search.addEventListener('input', function () {
+          var query = search.value.toLowerCase();
+          items.forEach(function (li) {
+            li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+          });
+          headings.forEach(function (h2) {
+            var list = h2.nextElementSibling;
+            var visible = list.querySelectorAll('li:not([style*="display: none"])');
+            h2.style.display = visible.length ? '' : 'none';
+          });
         });
       })();
     </script>

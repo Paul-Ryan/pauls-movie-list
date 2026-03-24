@@ -45,6 +45,32 @@ header h1 {
 .dark-mode #theme-toggle .icon-sun { display: none; }
 .dark-mode #theme-toggle .icon-moon { display: inline; }
 
+#search {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+#search:focus {
+  border-color: #555;
+}
+
+.dark-mode #search {
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+.dark-mode #search:focus {
+  border-color: #888;
+}
+
 main {
   margin: 0 auto;
   max-width: 800px;
