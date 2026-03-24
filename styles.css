@@ -45,6 +45,82 @@ header h1 {
 .dark-mode #theme-toggle .icon-sun { display: none; }
 .dark-mode #theme-toggle .icon-moon { display: inline; }
 
+#search-wrapper {
+  position: relative;
+}
+
+#search {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+#search:focus {
+  border-color: #555;
+}
+
+#suggestions {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  margin-top: -2px;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#suggestions li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  background: white;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+#suggestions li:hover {
+  background: #f0f0f0;
+  transform: none;
+  box-shadow: none;
+}
+
+.dark-mode #search {
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+.dark-mode #search:focus {
+  border-color: #888;
+}
+
+.dark-mode #suggestions {
+  background: #2a2a2a;
+  border-color: #444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode #suggestions li {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+.dark-mode #suggestions li:hover {
+  background: #3a3a3a;
+}
+
 main {
   margin: 0 auto;
   max-width: 800px;
