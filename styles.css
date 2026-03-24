@@ -158,7 +158,7 @@ li {
   background: none;
   border: none;
   cursor: pointer;
-  color: #ccc;
+  color: #aaa;
   padding: 0;
   margin-left: 0.5rem;
   font-size: 1.2rem;
@@ -169,13 +169,13 @@ li {
 
 @media (hover: hover) {
   .fav-btn:hover {
-    color: #e74c3c;
+    color: #333;
     transform: scale(1.2);
   }
 }
 
 .fav-btn.favorited {
-  color: #e74c3c;
+  color: #333;
 }
 
 .fav-btn .material-symbols-outlined {
@@ -191,7 +191,7 @@ li {
 }
 
 .dark-mode .fav-btn.favorited {
-  color: #e74c3c;
+  color: #e0e0e0;
 }
 
 @media (hover: hover) {
@@ -201,7 +201,7 @@ li {
   }
 
   .dark-mode .fav-btn:hover {
-    color: #e74c3c;
+    color: #e0e0e0;
   }
 }
 
