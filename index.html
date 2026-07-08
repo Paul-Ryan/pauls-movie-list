@@ -11,8 +11,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paul's Movie List</title>
+    <!-- Set theme before first paint to avoid a flash of the wrong theme. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('theme-dark-init');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,400,0,0&display=swap"
+    />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -25,127 +42,45 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <header>
-      <h1>Paul's Movie List</h1>
-      <button id="theme-toggle" aria-label="Toggle dark mode">
-        <span class="icon-sun material-symbols-outlined">light_mode</span>
-        <span class="icon-moon material-symbols-outlined">dark_mode</span>
-      </button>
-    </header>
-    <main>
-      <div id="search-wrapper">
-        <input type="text" id="search" placeholder="Search movies & shows..." aria-label="Search movies and shows" autocomplete="off" />
-        <ul id="suggestions"></ul>
-      </div>
-      <h2 id="movies-heading">Favorite Movies</h2>
-      <ul aria-labelledby="movies-heading">
-        <li><span>Hunt for the Wilderpeople</span><button class="fav-btn" aria-label="Favorite" data-title="Hunt for the Wilderpeople"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Mission Impossible: Rogue Nation</span><button class="fav-btn" aria-label="Favorite" data-title="Mission Impossible: Rogue Nation"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Her</span><button class="fav-btn" aria-label="Favorite" data-title="Her"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>The Little Hours</span><button class="fav-btn" aria-label="Favorite" data-title="The Little Hours"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Blade Runner</span><button class="fav-btn" aria-label="Favorite" data-title="Blade Runner"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>The Thing (1982)</span><button class="fav-btn" aria-label="Favorite" data-title="The Thing (1982)"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>The Fifth Element</span><button class="fav-btn" aria-label="Favorite" data-title="The Fifth Element"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Terminator 2</span><button class="fav-btn" aria-label="Favorite" data-title="Terminator 2"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Mars Express</span><button class="fav-btn" aria-label="Favorite" data-title="Mars Express"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Past Lives</span><button class="fav-btn" aria-label="Favorite" data-title="Past Lives"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Starship Troopers</span><button class="fav-btn" aria-label="Favorite" data-title="Starship Troopers"><span class="material-symbols-outlined">favorite</span></button></li>
-      </ul>
-      <h2 id="shows-heading">Favorite Shows</h2>
-      <ul aria-labelledby="shows-heading">
-        <li><span>Succession</span><button class="fav-btn" aria-label="Favorite" data-title="Succession"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>The Office</span><button class="fav-btn" aria-label="Favorite" data-title="The Office"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Futurama</span><button class="fav-btn" aria-label="Favorite" data-title="Futurama"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>What We Do In The Shadows</span><button class="fav-btn" aria-label="Favorite" data-title="What We Do In The Shadows"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Better Call Saul</span><button class="fav-btn" aria-label="Favorite" data-title="Better Call Saul"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Freaks and Geeks</span><button class="fav-btn" aria-label="Favorite" data-title="Freaks and Geeks"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>Firefly</span><button class="fav-btn" aria-label="Favorite" data-title="Firefly"><span class="material-symbols-outlined">favorite</span></button></li>
-        <li><span>White Lotus</span><button class="fav-btn" aria-label="Favorite" data-title="White Lotus"><span class="material-symbols-outlined">favorite</span></button></li>
-      </ul>
-    </main>
     <script>
-      (function () {
-        var btn = document.getElementById('theme-toggle');
-        var stored = localStorage.getItem('theme');
-        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.body.classList.add('dark-mode');
-        }
-        btn.addEventListener('click', function () {
-          document.body.classList.toggle('dark-mode');
-          localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        });
-      })();
-
-      (function () {
-        var search = document.getElementById('search');
-        var suggestions = document.getElementById('suggestions');
-        var items = document.querySelectorAll('main ul:not(#suggestions) li');
-        var headings = document.querySelectorAll('main h2');
-
-        function getTitle(li) {
-          var span = li.querySelector('span');
-          return span ? span.textContent : li.textContent;
-        }
-
-        function filter(query) {
-          items.forEach(function (li) {
-            li.style.display = getTitle(li).toLowerCase().includes(query) ? '' : 'none';
-          });
-          headings.forEach(function (h2) {
-            var list = h2.nextElementSibling;
-            var visible = list.querySelectorAll('li:not([style*="display: none"])');
-            h2.style.display = visible.length ? '' : 'none';
-          });
-        }
-
-        function showSuggestions(query) {
-          suggestions.innerHTML = '';
-          if (!query) { suggestions.style.display = 'none'; return; }
-          var matches = [];
-          items.forEach(function (li) {
-            if (getTitle(li).toLowerCase().includes(query)) matches.push(getTitle(li));
-          });
-          if (!matches.length) { suggestions.style.display = 'none'; return; }
-          matches.forEach(function (text) {
-            var li = document.createElement('li');
-            var idx = text.toLowerCase().indexOf(query);
-            li.innerHTML = text.substring(0, idx) + '<strong>' + text.substring(idx, idx + query.length) + '</strong>' + text.substring(idx + query.length);
-            li.addEventListener('click', function () {
-              search.value = text;
-              filter(text.toLowerCase());
-              suggestions.style.display = 'none';
-            });
-            suggestions.appendChild(li);
-          });
-          suggestions.style.display = 'block';
-        }
-
-        search.addEventListener('input', function () {
-          var query = search.value.toLowerCase();
-          filter(query);
-          showSuggestions(query);
-        });
-
-        document.addEventListener('click', function (e) {
-          if (!e.target.closest('#search-wrapper')) suggestions.style.display = 'none';
-        });
-      })();
-
-      (function () {
-        var favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-        var buttons = document.querySelectorAll('.fav-btn');
-        buttons.forEach(function (btn) {
-          var title = btn.getAttribute('data-title');
-          if (favs.indexOf(title) !== -1) btn.classList.add('favorited');
-          btn.addEventListener('click', function () {
-            btn.classList.toggle('favorited');
-            var idx = favs.indexOf(title);
-            if (idx === -1) { favs.push(title); } else { favs.splice(idx, 1); }
-            localStorage.setItem('favorites', JSON.stringify(favs));
-          });
-        });
-      })();
+      // Promote the pre-paint flag to the real dark-mode class once <body> exists.
+      if (document.documentElement.classList.contains('theme-dark-init')) {
+        document.body.classList.add('dark-mode');
+      }
     </script>
+    <div class="page">
+      <header class="top">
+        <div class="top-inner">
+          <div class="top-row">
+            <div>
+              <h1 class="title">Paul's Movie List</h1>
+              <p class="subtitle" id="subtitle">19 titles · 11 movies · 8 shows</p>
+            </div>
+            <div class="actions">
+              <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle dark mode">
+                <span class="icon-sun material-symbols-outlined">light_mode</span>
+                <span class="icon-moon material-symbols-outlined">dark_mode</span>
+              </button>
+              <button id="share-btn" class="share-btn" type="button" aria-label="Copy link to this list">
+                <span class="material-symbols-outlined" id="share-icon">link</span
+                ><span id="share-label">Share</span>
+              </button>
+            </div>
+          </div>
+          <div class="search">
+            <span class="material-symbols-outlined">search</span>
+            <input id="search" type="text" placeholder="Search titles" aria-label="Search titles" autocomplete="off" />
+          </div>
+        </div>
+      </header>
+      <main id="list" aria-live="polite">
+        <noscript>
+          <p class="empty">This list needs JavaScript enabled to display.</p>
+        </noscript>
+      </main>
+      <p class="footer">Shared list · updated 2026</p>
+    </div>
+    <script src="app.js" defer></script>
   </body>
   <footer>
     <!-- Quantcast Tag -->
